@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Untuk Bulan - Dari Telka</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Open+Sans&display=swap');
+
+  /* Reset & basic */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background-color: #ffd1dc; /* polos pink lucu */
+    color: #4a3c45;
+    font-family: 'Crimson Text', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    margin-bottom: 2rem;
+  }
+
+  header h1 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: #7f3f55;
+    margin: 0;
+  }
+
+  header h2 {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #8c577a;
+    margin: 0;
+    margin-top: 0.2rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  main {
+    max-width: 600px;
+    background-color: #ffffffcc;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(127, 63, 85, 0.25);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #4a3c45;
+    position: relative;
+    z-index: 2;
+  }
+
+  main p {
+    margin-bottom: 1.25rem;
+  }
+
+  main .from {
+    margin-top: 2rem;
+    font-weight: 600;
+    text-align: right;
+    font-size: 1rem;
+    color: #8c577a;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: #a86c88;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Kitty animation */
+  .kitty-container {
+    position: absolute;
+    top: -120px;
+    right: -60px;
+    width: 140px;
+    height: 140px;
+    animation: float 4s ease-in-out infinite;
+    user-select: none;
+    z-index: 3;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Kitty face */
+  .kitty-face {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: #fff;
+    border-radius: 60% / 70%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+
+  /* Ears */
+  .ear {
+    position: absolute;
+    top: 12px;
+    width: 40px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50% 50% 20% 20%;
+    border: 2px solid #c76186;
+    box-sizing: border-box;
+  }
+  .ear.left {
+    left: 10px;
+    transform: rotate(-15deg);
+  }
+  .ear.right {
+    right: 10px;
+    transform: rotate(15deg);
+  }
+
+  .ear-inner {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 16px;
+    height: 22px;
+    background: #c76186;
+    border-radius: 50% 50% 20% 20%;
+  }
+
+  /* Eyes */
+  .eye {
+    position: absolute;
+    top: 60px;
+    width: 18px;
+    height: 18px;
+    background: #4a3c45;
+    border-radius: 50%;
+    box-shadow:
+      0 0 6px #00000066;
+  }
+  .eye.left {
+    left: 35px;
+  }
+  .eye.right {
+    right: 35px;
+  }
+
+  .eye::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    animation: blink 8s infinite;
+  }
+
+  @keyframes blink {
+    0%, 97%, 100% { opacity: 1; }
+    98%, 99% { opacity: 0; }
+  }
+
+  /* Nose */
+  .nose {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 10px;
+    background: #c76186;
+    border-radius: 10px / 6px;
+  }
+
+  /* Whiskers */
+  .whisker {
+    position: absolute;
+    top: 92px;
+    width: 40px;
+    height: 2px;
+    background: #4a3c45;
+    opacity: 0.6;
+  }
+  .whisker.left1 {
+    left: 10px;
+    transform: rotate(7deg);
+  }
+  .whisker.left2 {
+    left: 10px;
+    top: 98px;
+    transform: rotate(-7deg);
+  }
+  .whisker.right1 {
+    right: 10px;
+    transform: rotate(-7deg);
+  }
+  .whisker.right2 {
+    right: 10px;
+    top: 98px;
+    transform: rotate(7deg);
+  }
+
+  /* Bow */
+  .bow {
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    width: 38px;
+    height: 30px;
+    transform-origin: center;
+    animation: bowGlow 3s infinite alternate;
+  }
+
+  @keyframes bowGlow {
+    0% {
+      filter: drop-shadow(0 0 0 #d184a1);
+    }
+    100% {
+      filter: drop-shadow(0 0 8px #d184a1);
+    }
+  }
+
+  .bow-part {
+    position: absolute;
+    width: 14px;
+    height: 20px;
+    background: #d184a1;
+    border-radius: 50% 50% 0 0;
+    top: 0;
+  }
+  .bow-left {
+    left: 0;
+    transform: rotate(-20deg);
+  }
+  .bow-center {
+    left: 13px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #f7a7c1;
+  }
+  .bow-right {
+    right: 0;
+    transform: rotate(20deg);
+  }
+
+  /* Love hearts container */
+  .love-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Heart styling */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    background: #d63a5d;
+    transform: rotate(-45deg);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0.8;
+    animation: floatHeart 4s ease-in-out infinite;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    background: #d63a5d;
+    border-radius: 50% 50% 50% 50%;
+  }
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+
+  /* Different positions and delays for hearts */
+  .heart:nth-child(1) {
+    left: 40px;
+    animation-delay: 0s;
+  }
+  .heart:nth-child(2) {
+    left: 10px;
+    animation-delay: 1.5s;
+    width: 14px;
+    height: 13px;
+  }
+  .heart:nth-child(3) {
+    left: 70px;
+    animation-delay: 3s;
+    width: 16px;
+    height: 15px;
+  }
+
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-30px) rotate(-45deg);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Untuk Bulan</h1>
+    <h2>Dari Telka</h2>
+  </header>
+  <main aria-label="Pesan dan lirik romantis">
+    <p>Setiap hari aku bersyukur memilikimu, Bulan. Kamu adalah kebahagiaan yang sederhana namun berarti di hidupku.</p>
+    <p>Kau membuat dunia ini terasa lebih hangat dan penuh warna.</p>
+    <p><strong>Lirik lagu "Perfect" - Ed Sheeran (terjemahan singkat):</strong></p>
+    <p>
+      Aku menemukan cintaku<br/>
+      Di dalam dirimu<br/>
+      Kau sempurna untukku<br/>
+      Dan aku akan selalu menjagamu
+    </p>
+    <p>
+      Mari kita berenang di bawah bintang<br/>
+      Asalkan kau ada di sisiku
+    </p>
+    <p class="from">- Dengan cinta, Telka</p>
+  </main>
+  <footer>
+    Terima kasih telah menjadi Bulanku yang indah.
+  </footer>
+
+  <div class="kitty-container" aria-label="Animasi Hello Kitty" role="img">
+    <div class="kitty-face" >
+      <div class="ear ear-left ear">
+        <div class="ear-inner"></div>
+      </div>
+      <div class="ear ear-right ear">
+        <div class="ear-inner"></div>
+      </div>
+      <div class="eye eye-left eye"></div>
+      <div class="eye eye-right eye"></div>
+      <div class="nose"></div>
+      <div class="whisker whisker-left1 whisker"></div>
+      <div class="whisker whisker-left2 whisker"></div>
+      <div class="whisker whisker-right1 whisker"></div>
+      <div class="whisker whisker-right2 whisker"></div>
+      <div class="bow">
+        <div class="bow-part bow-left"></div>
+        <div class="bow-part bow-center"></div>
+        <div class="bow-part bow-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="love-container" aria-hidden="true">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+  </div>
+</body>
+</html>
+
